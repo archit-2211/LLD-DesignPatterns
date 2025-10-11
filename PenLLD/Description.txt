@@ -1,38 +1,50 @@
-DESIGNING A PEN  : 
-
-    This is first example to better understand how solid design principles help write maintainable testable modular, readable object oriented design code.
-    Apart from SOLID Principles, we will try to apply DRY principle and DI to make our code more scalable and extensible 
-
-Requirment Gathering :
-
-    1. Here we are tasked to software entity design for pen. 
-    First lets list down the attributes of pen 
-    1. Name 
-    2. Price 
-    3. Brand 
-    
-    These are the common attributes. 
-    Now the Pen can be formerly divided in these types : 
-    1. Gel Pen 
-    2. Bal Pen 
-    3. Fontain Pen 
-
-    Again with in these types we have 
-    1. Refillable Pens 
-    2. Disposable Pens 
-
-
-    Behaviours exhibited by Pen 
-
-    1. write()
-    2. onEmpty()
-
-    We can have multicolor-pens as well. 
-
-    right these are higher level requirements of the system, we should be able to exhibit these behaviours following the SOLID Guidelines. 
-
-
-    
-
-Since pen itself can be a separate entity with its own attributes and common behaviours 
-Lets create a abstract class Named 
+SOLID Pen Design Notes
+    1. Requirements
+        Pen Attributes: name, price, brand
+        Pen Types: BallPen, GelPen, FountainPen
+        Behaviors:
+            write() → writes text
+            onEmpty() → triggers refill/disposal
+        Special Features:
+            Multicolor ink
+            Refillable or disposable pens
+            Dynamic behaviors and properties
+    2. SOLID Principles Applied
+        SRP (Single Responsibility Principle)
+            Separate concerns:
+                Pen → delegates writing and empty behavior
+                Ink → handles how writing happens
+                OnEmptyBehavior → handles what happens when pen is empty
+        OCP (Open-Close Principle)
+            Extend system by adding:
+                New Pen types (BallPen, GelPen)
+                New Ink types (SingleInk, MultiColorInk)
+                New Empty Behaviors (RefillableBehavior, DisposableBehavior)
+                Existing code does not need modification.
+        LSP (Liskov Substitution Principle)
+            Anywhere a Pen is expected, any concrete pen (BallPen, GelPen, FountainPen) can be used without breaking behavior.
+        ISP (Interface Segregation Principle)
+            Small, focused interfaces:
+                Ink → only for writing
+                OnEmptyBehavior → only for handling empty action
+                Avoids forcing pens to implement methods they don’t need.
+        DIP (Dependency Inversion Principle)
+            Pen depends on abstractions (Ink and OnEmptyBehavior), not concrete classes.
+            Supports flexible injection of ink and behavior.
+    3. Design Patterns Used
+        Strategy Pattern → dynamically choose writing ink (Ink interface)
+        Composition over Inheritance → pen delegates behaviors instead of class explosion
+        Factory Pattern (optional) → instantiate different inks dynamically
+        Dependency Injection → inject Ink and OnEmptyBehavior into Pen
+    4. Key Features
+        Dynamic behavior switching:
+        pen.setEmptyBehavior(new DisposableBehavior());
+        pen.setInk(new MultiColorInk());
+        Multicolor support: MultiInk class handles ink switching internally.
+        Extensible: Adding new ink types, pen types, or behaviors requires new classes only, existing classes remain untouched.
+        Testable & maintainable: Each component can be tested independently.
+    5. Example Use Cases
+        Single-color refillable BallPen
+        Multicolor disposable GelPen
+        Dynamic ink switching at runtime
+        Dynamic empty behavior switching (Refillable ↔ Disposable)
