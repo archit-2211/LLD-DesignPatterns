@@ -1,4 +1,4 @@
-package GangsOfFour.CreationalDesignPatterns;
+package GangsOfFour.CreationalDesignPatterns.Singleton;
 
 
 /*
