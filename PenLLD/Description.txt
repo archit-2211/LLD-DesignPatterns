@@ -1,0 +1,38 @@
+DESIGNING A PEN  : 
+
+    This is first example to better understand how solid design principles help write maintainable testable modular, readable object oriented design code.
+    Apart from SOLID Principles, we will try to apply DRY principle and DI to make our code more scalable and extensible 
+
+Requirment Gathering :
+
+    1. Here we are tasked to software entity design for pen. 
+    First lets list down the attributes of pen 
+    1. Name 
+    2. Price 
+    3. Brand 
+    
+    These are the common attributes. 
+    Now the Pen can be formerly divided in these types : 
+    1. Gel Pen 
+    2. Bal Pen 
+    3. Fontain Pen 
+
+    Again with in these types we have 
+    1. Refillable Pens 
+    2. Disposable Pens 
+
+
+    Behaviours exhibited by Pen 
+
+    1. write()
+    2. onEmpty()
+
+    We can have multicolor-pens as well. 
+
+    right these are higher level requirements of the system, we should be able to exhibit these behaviours following the SOLID Guidelines. 
+
+
+    
+
+Since pen itself can be a separate entity with its own attributes and common behaviours 
+Lets create a abstract class Named 
