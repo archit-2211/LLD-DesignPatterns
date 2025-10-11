@@ -1,0 +1,53 @@
+Gangs of Four : Elements of Reusable Object Oriented Software is a book written by Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides, with a foreword by Grady Booch.
+
+Even though this is not something mandatory to know; not something
+that will be asked in the interview. 
+
+This book consists of 23 design patterns and its variations for most commonly encountered problems
+while developing a software usinf Object Oriented Programming Paradigm. 
+
+The design patterns are prominently categorised into 3 types. 
+
+1. Creational Design Patterns
+2. Behavioral Design Patterns
+3. Structural design patterns
+
+
+1. Creational Design Patterns : 
+
+    Design patterns aimed to help us create objects of complex entities and classes in the software system
+    Important Ones are 
+
+    1. Singleton design Pattern
+    2. Builder Design Pattern 
+    3. Prototype Design Pattern
+    4. Factory Design Pattern 
+
+2. Structural Design Pattern : 
+
+    Design patterns that hep us struture our code to better acheive the abstfraction are structural design patterns
+    Important Ones are 
+
+    1. Adapter 
+    2. Bridge
+    3. Composite 
+    4. Decorator 
+    5. Fascade 
+    6. Flyweight 
+    7. Proxy 
+
+4. Behavioral Design Pattern : 
+
+    Design Patterns that focus on communiction and responsibility between objects 
+
+    1. Chain of Responsibility 
+    2. Command
+    3. Iterator 
+    4. Strategy 
+    5. Template 
+    6. Observer 
+
+Lets understand each and every design pattern in detail with all its variations. 
+
+
+

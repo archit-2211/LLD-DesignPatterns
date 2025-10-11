@@ -1,0 +1,17 @@
+Singleton Design Pattern : 
+
+    The goal of using this pattern is to make sure we can only create a single object of this class in our entire application. 
+
+    We typically make our class to be a singleton class when the expense of creating object is very high or there isn't any attribute difference between multiple instances of the class. 
+
+    When we want to centralise logic or control, example storing of cache across the application. 
+
+There different variations of singleton class each will be explained in detail and its use cases and its technical tradeoffs. 
+
+
+
+First to understand more about creating object and its pattern, what is the core component of class that is responsible for the creation of object ?? 
+
+Constructor ! If we want to limit the object first we should make sure that constructor is not accessible to the outside world. 
+
+Refer to the different code blocks effectively explaining popular variations of singleton design principle.
