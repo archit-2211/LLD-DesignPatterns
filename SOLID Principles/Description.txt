@@ -1,0 +1,469 @@
+
+
+🧱 SOLID Principles
+    S.O.L.I.D is an acronym for five design principles that help us write better object-oriented code.
+
+🔍 What is “Better” Code?
+
+    Code should be 
+        1. Maintainable
+        2. Testable
+        3. Modular
+        4. Extensible 
+        5. Readable 
+    
+    Object-Oriented Programming (OOP) often increases the size of the codebase, but that’s the tradeoff for achieving abstraction, encapsulation, and flexibility.
+    ⚠️ These are guidelines, not hard rules. Based on your use case and business context, you might choose to apply or relax them.
+
+    Below is the formal definition of every principle and we will analyse this in more detail with 2 examples :
+
+    1. Design a Pen 
+    2. Design a bird 
+
+    1. S in S.O.L.I.D stands for Single Responsibility Principle :
+    
+        Commonly known as S.R.P. As the name suggests; a block of code should only have a single Responsibility. 
+        Example : 
+            There is url-shortner. In this we have user creation code, uuser validation code and core business llogic of url-shortening. 
+            If all the code of url shortner is written in single class 
+
+            for example : pseudo-code 
+
+            class urlShortner  {
+
+                userCreation() {
+                    //user is being created
+                }
+                userValidation() {
+                    //user id being validated
+                }
+                urlShortening() {
+                    //url is shortened
+                }
+
+
+
+            }
+
+            The class urlShortner is having multiple Responsibilities, handling business logic of urlShortening, handling userCreation and userValidation.
+            So there are multiple reasons to make changes in this piece of code. 
+            This effectively violates Single Responsibility principle
+            There is a tight cop;ling between user handling and core business logic
+            In this example lets say in future we want to add a functionality of letting user create their own customised shortened url, the code for userCreation and
+            validation might also get effected 
+            So this violates SRP. 
+
+            What is good design then ?? 
+            
+
+
+            class UserAuthentication {
+                userCreation(){}
+                userValidation(){}
+            }
+
+            class urlShortening{
+                urlShorteningMethod(){}
+            }
+
+            Here we have abstracted out the user related tasks with the business logic.
+            While depending up on the usecase we can also abstract out user Validation and user creation in different classes as well. 
+        
+    2. O in S.O.L.I.D stands for Open-Close Principle 
+
+        This principle states that "Our code should be open for extension and closed for modification". 
+        Software entities (classes, modules, functions) should be open for extension but closed for modification.
+        For Example : 
+
+            As discussed in the urlShortener example, lets say we want to add functionality of user creating their own shortened url. 
+            What will be the most simplest code look like, if we are designing a simple program ?? 
+
+            class urlShortner {
+                urlShortening(String customUrl) {
+                    if (customUrl == "") {
+                        //implement default logic
+                    }
+                    else {
+                        //check if the customUrl is already taken 
+                        // if not process it 
+                        // if yes throw an exception, url already exists 
+                    }
+                }
+            }
+
+            if we optimise it to one level, we can use Method Over-loading 
+
+            class urlShortner {
+                urlShorteneing(){
+                    //implement default logic of url shortening
+                }
+
+                urlShortening(String customUrl) {
+                    //check if the customUrl is already taken 
+                        // if not process it 
+                        // if yes throw an exception, url already exists 
+
+                }
+            }
+
+            Now what if we want to add a functionality of creating a custom-url depending on the length of url, small url : wuth in 10 characters for premium users and
+            30 characters length url for non-premium users ?? 
+            Then we violate open-close principle here because 
+
+            class urlShortener{
+                urlShorteneing() {
+                    // default logic
+                }
+                urlShortening(String customUrl, isPremiumUser) {
+                    if (isPremiumUser) {
+                        // create aa 10 character url 
+                    }
+                    else {
+                        //create long format url
+                    }
+                }
+            }
+
+            Now we have modified the existing piece of code in future if we are about to change the premiumUser logic, the whole customUrlSHortnening mechanism gets effected
+            which effectively violates SRP as well. 
+
+            Solution to this problem ? 
+
+            interface urlShortneingLogic {
+                urlShorteneing(){}
+
+            }
+            implemented by concrete classes 
+
+            defaultUrlShorteneing implements urlShorteneingLogic{
+
+                urlShorteneing() {
+                    // default logic
+                }
+
+            }
+            premiumUrlSHortnening implements urlShorteneingLogic{
+                urlShorteneing() {
+                    //premium user logic
+                }
+            }
+
+            In this way we can add new features adding new classes implementing interface. Remove features removing only the class associated with it.
+    
+    3. L in S.O.L.I.D stands for Liskov Substitution Principle : 
+
+        Objects of a superclass should be replaceable with objects of their subclasses without altering the correctness of the program.
+
+        In simpler terms —
+        If class B is a subclass of class A, then B should be able to stand in for A anywhere in the code, without breaking functionality.
+
+        Example : 
+
+        class Rectangle {
+            protected int width;
+            protected int height;
+
+            void setWidth(int w) { width = w; }
+            void setHeight(int h) { height = h; }
+
+            int getArea() { return width * height; }
+        }
+
+        class Square extends Rectangle {
+            void setWidth(int w) {
+                width = height = w;
+            }
+            void setHeight(int h) {
+                width = height = h;
+            }
+        }
+
+        Rectangle rect = new Square();
+        rect.setWidth(5);
+        rect.setHeight(10);
+        System.out.println(rect.getArea()); // Expected 50, but outputs 100
+
+        Better Design ?? 
+
+        interface Shape {
+            int getArea();
+        }
+
+        class Rectangle implements Shape {
+            private int width;
+            private int height;
+
+            Rectangle(int width, int height) {
+                this.width = width;
+                this.height = height;
+            }
+
+            public int getArea() {
+                return width * height;
+            }
+        }
+
+        class Square implements Shape {
+            private int side;
+
+            Square(int side) {
+                this.side = side;
+            }
+
+            public int getArea() {
+                return side * side;
+            }
+        }
+
+        Now every shape has their own implementation and contracts. 
+
+    4. I in S.O.L.I.D stands for Interface Segregation Principle : 
+
+        It’s better to have many small, specific interfaces than one large, general-purpose interface that forces implementing classes to include unnecessary methods.
+        he Interface Segregation Principle (ISP) focuses on decoupling and clarity of responsibility.
+        It ensures:
+        Each interface represents one role or capability.
+        Classes implement only what they actually need.
+        Changes in one part of the code don’t impact unrelated clients.
+
+        Example : 
+
+                interface Machine {
+                    void print(Document d);
+                    void scan(Document d);
+                    void fax(Document d);
+                }
+
+                class AllInOnePrinter implements Machine {
+                    public void print(Document d) { /* printing logic */ }
+                    public void scan(Document d) { /* scanning logic */ }
+                    public void fax(Document d) { /* fax logic */ }
+                }
+
+                class SimplePrinter implements Machine {
+                    public void print(Document d) { /* printing logic */ }
+
+                    public void scan(Document d) {
+                        throw new UnsupportedOperationException("Scan not supported");
+                    }
+
+                    public void fax(Document d) {
+                        throw new UnsupportedOperationException("Fax not supported");
+                    }
+                }
+            
+            This in a way also violates Liskov Substitution Principle as well. 
+
+            So a better design wwould be 
+
+            interface Printer {
+                    void print(Document d);
+                }
+
+            interface Scanner {
+                void scan(Document d);
+            }
+
+            interface Fax {
+                void fax(Document d);
+            }
+
+            class SimplePrinter implements Printer {
+                    public void print(Document d) { /* printing logic */ }
+                }
+
+            class OfficePrinter implements Printer, Scanner, Fax {
+                public void print(Document d) { /* print logic */ }
+                public void scan(Document d) { /* scan logic */ }
+                public void fax(Document d) { /* fax logic */ }
+            }
+
+            This principle is also known as SRP of interfaces. 
+
+    5. Dependency Inversion Principle : 
+
+        Don’t let your business logic (high-level code) directly depend on implementation details (low-level code).
+        Instead, both should depend on contracts (interfaces/abstract classes).
+
+        The Dependency Inversion Principle promotes loose coupling:
+        High-level modules focus on business rules, not infrastructure.
+        Low-level modules implement the details without forcing changes on high-level logic.
+        Makes code extensible, testable, and maintainable.
+
+
+        class SmsService {
+            void sendSms(String message) {
+                // send SMS
+            }
+        }
+
+        class NotificationService {
+            private SmsService smsService;
+
+            NotificationService() {
+                smsService = new SmsService();
+            }
+
+            void sendNotification(String message) {
+                smsService.sendSms(message);
+            }
+        }
+        Code following Dependency Inversion Principle
+
+
+        interface MessageService {
+            void sendMessage(String message);
+        }
+
+        class SmsService implements MessageService {
+            public void sendMessage(String message) {
+                // send SMS
+            }
+        }
+
+        class EmailService implements MessageService {
+            public void sendMessage(String message) {
+                // send Email
+            }
+        }
+
+        class NotificationService {
+            private MessageService service;
+
+            NotificationService(MessageService service) {
+                this.service = service;
+            }
+
+            void sendNotification(String message) {
+                service.sendMessage(message);
+            }
+        }
+
+        Here the Low - level code, concrete implementation NotoficationService doesnt direcly depend on concrete classes of SmsService and EmailService Instead
+        depends on abstractio : MessageService
+
+Some Other important Programming Principles : 
+
+    1. Dependency Injection (DI) : 
+
+        Dependency Injection is a design pattern in which an object (or class) receives its dependencies from external sources rather than creating them itself.
+        This is the core concept behind spring-boot where the beans are created and stored in application context. The springboot automatically injectes dependencies using 
+        constructor injection or auto-wired injection.
+
+        Without DI : 
+
+        class NotificationService {
+            private SmsService smsService;
+
+            NotificationService() {
+                smsService = new SmsService(); // tight coupling
+            }
+
+            void sendNotification(String message) {
+                smsService.sendMessage(message);
+            }
+        }
+
+        First things first this is violating Dependency Inversion Principle. Lets make it first compatible with dependency inversion principle 
+
+       interface MessageService {
+            void sendMessage(String message);
+        }
+
+        class SmsService implements MessageService {
+            public void sendMessage(String message) {
+                System.out.println("SMS: " + message);
+            }
+        }
+
+        class EmailService implements MessageService {
+            public void sendMessage(String message) {
+                System.out.println("Email: " + message);
+            }
+        }
+
+        class NotificationService {
+            private MessageService service;
+
+            //Violation of DI here 
+            NotificationService() {
+                this.service = new SmsService();
+            }
+
+            void sendNotification(String message) {
+                service.sendMessage(message);
+            }
+        }
+
+        Now if we want to swap the MessageService we need to define many constructors or ay other custom logic. 
+
+        what is better pattern just inject the dependency 
+
+        class NotificationService {
+            private MessageService service;
+
+            
+            NotificationService(SmsService service) {
+                this.service = service;
+            }
+
+            void sendNotification(String message) {
+                service.sendMessage(message);
+            }
+        }
+
+        The above example method is known as constructor injection. 
+
+    2. DRY Principle : 
+
+        Every piece of knowledge or logic should exist in a single, unambiguous place in the codebase.
+        In simpler terms:
+        Avoid duplicating code. If the same logic appears in multiple places, refactor it into a single reusable function, class, or module.
+
+        Example : 
+
+        class Order1 {
+            double calculateDiscount(double price) {
+                return price * 0.1; // 10% discount
+            }
+        }
+
+        class Order2 {
+            double calculateDiscount(double price) {
+                return price * 0.1; // same 10% discount repeated
+            }
+        }
+
+    Better Design Using DRY 
+
+    class DiscountCalculator {
+            static double calculateDiscount(double price) {
+                return price * 0.1;
+            }
+        }
+
+    class Order1 {
+            double calculateDiscount(double price) {
+                return DiscountCalculator.calculateDiscount(price);
+            }
+        }
+
+    class Order2 {
+            double calculateDiscount(double price) {
+                return DiscountCalculator.calculateDiscount(price);
+            }
+        }
+
+
+Lets understand these things better using two examples 
+Refer to directory :
+    1. Design a Pen 
+    2. Design a bird
+
+
+
+
+
+
+
+
