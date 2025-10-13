@@ -1,0 +1,24 @@
+BUILDER DESIGN PATTERN :
+
+    To simplify the creation of complex objects by separating object construction from its representation, allowing the same construction process to create different representations.
+    Too many optional parameters,
+    Complex construction logic, or
+    Multiple ways to represent the same object,
+    constructors or factory methods become confusing ("telescoping constructors" problem).
+
+    Whats the key idea here ? 
+    Instead of assing cmany arguments to the constructor we are creating, we build a builder object, pass all the paramters one by one and in the end call the build method of thus builder object 
+    to create the object 
+
+
+    There two most important variations of this pattern : 
+
+    1. Fluent Builder 
+    2. Functional Builder 
+
+    With in fluent builder we have 2 primary variations :
+
+        1. Build Immutable Objects 
+        2. Build Mutable Objects 
+
+        

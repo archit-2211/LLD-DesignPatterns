@@ -25,7 +25,7 @@ The design patterns are prominently categorised into 3 types.
 
 2. Structural Design Pattern : 
 
-    Design patterns that hep us struture our code to better acheive the abstfraction are structural design patterns
+    Design patterns that help us struture our code to better acheive the abstfraction are structural design patterns
     Important Ones are 
 
     1. Adapter 
