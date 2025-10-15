@@ -5,7 +5,8 @@ public class Pizza {
     private final boolean hasPepperoni;
     private final boolean hasMushrooms;
 
-    // Private constructor (same as before)
+    // Default constructor (Cannot be accessed out side of this package// If we truly want to make sure main doesnt access this directeluy, both Pizza and PizzabUILDER SHOULD be in one package and main should 
+    //be outside of the package
     Pizza(String size, boolean hasCheese, boolean hasPepperoni, boolean hasMushrooms) {
         this.size = size;
         this.hasCheese = hasCheese;
@@ -14,7 +15,7 @@ public class Pizza {
     }
 
     public String toString() {
-        return "Size : " + this.size + "has Cheese " + this.hasCheese + " has Pepperoni " + this.hasPepperoni + " has Mushrooms " + this.hasMushrooms ; 
+        return "Size : " + this.size + "has Cheese " + this.hasCheese + " has Pepperoni " + this.hasPepperoni + " has Mushrooms " + this.hasMushrooms ;
     }
     
     

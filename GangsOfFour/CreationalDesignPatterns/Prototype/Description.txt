@@ -1,0 +1,53 @@
+PROTOTYPE DESIGN PATTERN : 
+
+    PRE-REQUISITES : 
+
+        Copy Constructor : Constructor that creates a copy of the given object is known as Copy constructor. Typically used to create deep copy, while can also be used to create a shallow copy 
+
+        Example : 
+
+            Refer to CopyConstructor Directory 
+
+    
+    The Prototype Pattern is a creational design pattern that allows you to create new objects by cloning existing ones (prototypes) instead of creating them from scratch using new.
+    It’s perfect when:
+    Object creation is expensive (e.g., parsing config files, database load, heavy computation).
+    You need multiple copies of an object with slight modifications.
+                            
+        
+
+Steps to implement Prototype Pattern : 
+
+    Have an abstract interface Prototype that has method clone
+    This clone method is implemented by concrete classes like Shape in our example 
+    Now we implement clone method using copy constructor of the given class. 
+
+    Now we should store this prototypes somewhere so we can access them again right ? 
+    Thats where Prototype registry comes into picture. 
+
+    If we have single prototype registry in entire code base we can make it static class with static Map and static methods. 
+    Else we can create concrete registries for different prototype entities 
+    like carPrototypeRegistry, shapePrototypeRegistry. 
+
+    Combining the Prototype Pattern with the Flyweight Pattern is one of the most efficient ways to handle large-scale object creation, especially when many objects share common (immutable) state.
+    We will learn FlyWeight in future. 
+
+Why use Prototype Abstraction ? Why not direct copy constructor ? 
+
+        A copy constructor is perfect for one class at a time.
+        A Prototype pattern is a system-level abstraction that lets you:
+        Create any kind of object by cloning — without knowing its concrete class at compile time.
+
+        Example : 
+        With Copy Constructor 
+            Car c1 = new Car("Tesla");
+            Car c2 = new Car(c1); // must know it's a Car
+        With Prototype pattern 
+            Prototype prototype = registry.get("car");
+            Prototype clone = prototype.clone(); // no idea what type it is, still works!
+
+            We dont speciically know the object here 
+            Just the layer of abstraction over the simple copy constructor implementation
+
+
+
