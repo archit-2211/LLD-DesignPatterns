@@ -1,0 +1,47 @@
+FACTORY DESIGN PATTERN : 
+
+    Define an interface for creating an object but let subclasses or factories decide which class to instantiate. 
+    In simpler words, when we want to create different objects for different use cases we use Factory design pattern 
+    There are many variations of this design pattern. 
+
+
+SIMPLE FACTORY PATTERN :    
+    You have a few product types
+    Object creation logic should be centralized
+
+    Example : Refer to ShapeExample Direcotry 
+    Question : You’re building a drawing application that supports different shapes — Circle, Rectangle, and Triangle.
+    Each shape has a method draw() that prints a message like “Drawing Circle”.
+    The system should allow adding new shapes in the future without modifying existing client code that creates shapes.
+    You just need to change one place that decides which shape to create.
+
+ABSTRACT FACTORY PATTERN : 
+
+    Example : Refer to PaymentProcessingExample Directory 
+
+    You’re building a payment processing system for an e-commerce platform.
+    Requirements:
+    The platform supports multiple payment gateways: Stripe, PayPal, Razorpay.
+    Each gateway has a method processPayment(PaymentInfo info) that handles the payment differently.
+    The system should allow adding new payment gateways in the future without changing the client code that triggers payments.
+    You also want to switch gateways dynamically at runtime based on user choice or region.
+    👉 Design the class hierarchy and factory logic for this system. Show how the client would get the right payment processor and call processPayment.
+    Think industry-grade, not just academic — like something you’d implement in a production backend. 
+
+Lets understand how this design patten blends with other design patterns based on usecase. 
+One such example : Factory + Builder Hybrid
+
+Example : Refer to DataIngestion Directory 
+
+    You’re designing a data ingestion pipeline for a real-time analytics platform.
+    The system can pull data from multiple data sources — for example:
+    Kafka
+    AWS SQS
+    RabbitMQ
+    Custom Webhook feeds
+    Requirements:
+    Each data source has a connect() and a fetch() method.
+    The system configuration determines which data source to use at runtime.
+    You want to plug in new data sources later (e.g., “Azure Event Hub”) without changing existing code.
+    Each source might require different initialization parameters (like topic name, queue name, endpoint URL, etc.).
+    The factory should handle the construction complexity — the client should just say DataSource source = DataSourceFactory.get("kafka").

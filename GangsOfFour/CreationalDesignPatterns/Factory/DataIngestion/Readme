@@ -1,0 +1,55 @@
+Data Ingestion Factory + Builder Workflow
+This module demonstrates a scalable, extensible design for building multiple types of data sources in a real-time analytics platform using Factory + Builder patterns.
+1. Overview
+The system supports multiple data sources, including:
+Kafka
+AWS SQS
+RabbitMQ
+Custom Webhook feeds
+Each data source has:
+A connect() method for establishing connection
+A fetch() method to retrieve data
+The design separates:
+Data source configuration
+Data source creation
+Client usage
+2. Design Patterns Used
+Builder Pattern
+Encapsulates the construction of complex data source objects.
+Supports mandatory and optional parameters.
+Example: Kafka.KafkaBuilder, AwsSqs.SqsBuilder.
+Factory Pattern
+DataSourceConfigFactory: Creates configuration objects for each data source type.
+DataSourceFactory: Creates concrete Datasource instances using configuration objects and builders.
+3. Workflow
+Client selects a data source type (e.g., "KAFKA").
+DataSourceConfigFactory builds the appropriate configuration object (KafkaConfig, AwsSqsConfig, etc.).
+DataSourceFactory uses the configuration object to:
+Pick the right Builder for the data source
+Construct the concrete Datasource object
+Client calls connect() and fetch() on the datasource.
+
+
+Example Client Usage:
+
+    DataSourceConfig config = DataSourceConfigFactory.createConfig("KAFKA");
+    Datasource kafka = DataSourceFactory.getDataSource(config);
+
+    kafka.connect();
+    kafka.fetch();
+
+Optional runtime switch: Client can change data sources at runtime without modifying code. 
+
+    DataSourceConfig sqsConfig = DataSourceConfigFactory.createConfig("SQS");
+    Datasource sqs = DataSourceFactory.getDataSource(sqsConfig);
+    sqs.connect();
+    sqs.fetch();
+
+
+ADVANTAGES :
+
+    Open/Closed Principle: Adding new data sources requires minimal code changes.
+    Separation of Concerns: Config creation, object construction, and usage are decoupled.
+    Readability & Maintainability: Fluent builders make object creation clean and intuitive.
+    Production-ready: Can be extended to read configs from JSON, YAML, or environment variables.
+    Scalable: Works for complex systems with multiple data sources and varying initialization parameters.

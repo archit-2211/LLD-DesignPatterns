@@ -1,0 +1,9 @@
+You’re building a payment processing system for an e-commerce platform.
+Requirements:
+The platform supports multiple payment gateways: Stripe, PayPal, Razorpay.
+Each gateway has a method processPayment(PaymentInfo info) that handles the payment differently.
+The system should allow adding new payment gateways in the future without changing the client code that triggers payments.
+You also want to switch gateways dynamically at runtime based on user choice or region.
+👉 Design the class hierarchy and factory logic for this system. Show how the client would get the right payment processor and call processPayment.
+Think industry-grade, not just academic — like something you’d implement in a production backend.
+Do you want to try coding this or just design the class/factory diagram first?
