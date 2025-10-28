@@ -1,0 +1,21 @@
+🧩 Adapter Design Pattern
+ 
+✅ Description
+
+The Adapter Design Pattern is a structural pattern that allows two incompatible interfaces to work together by providing a bridge between them. 
+It converts the interface of an existing class (often a third-party SDK or legacy system) into one that a client application expects.
+In real-world software, adapters are commonly used to integrate external APIs or libraries without modifying the existing business logic. The adapter translates method calls, data formats, or protocols between the client and the adaptee.
+In this project, the Adapter Pattern is demonstrated through payment gateway integration — where different payment providers like Stripe, PayPal, and Razorpay each have their own APIs.
+By defining a common interface (PaymentGateway) and implementing specific adapters (StripeAdapter, PayPalAdapter, RazorpayAdapter), the system allows the business logic to process payments through any provider without changing the core code.
+
+
+✅ Key Benefits
+Loose Coupling: Client code depends only on a unified interface, not on third-party SDKs.
+Scalability: Easily add or swap new payment providers with minimal changes.
+Maintainability: External API changes are isolated inside their respective adapters.
+Reusability: Adapters can be reused across projects that share the same gateway interface.
+
+
+🏗 Real-World Analogy
+
+Just like a travel adapter lets your laptop plug into different power sockets around the world, a software adapter lets your application plug into different systems (like Stripe, PayPal, or Razorpay) using one standard interface.

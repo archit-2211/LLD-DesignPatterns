@@ -1,0 +1,56 @@
+Bridge design pattern is a structural design pattern aimed to separate out the the core abstraction and implementation from the code structure. 
+In simpler words if we combine abstraction and implementation using traditional strategy of inheritance we encounter class explosion problem which makes our code not extensible amd scalable.
+
+Lets take an example, 
+Lets say we have different shape of different colours 
+
+We have 4 shapes in our program : 
+    <Interface> Shape 
+    <Class> Square implements Shape
+    <Class> Rectangle implements Shape
+    <Class> Triangle implements Shape
+    <Class> Circle implements Shape
+
+    Now lets say we have 4 colours Red, Blue, Green, Yellow and we have every shape in every colour so if we want to go with tradiitonal approach of inheritance; the code structure would look like  
+
+🚨 The Traditional (Inheritance-Based) Approach
+
+Shapes: Square, Rectangle, Triangle, Circle
+Colors: Red, Blue, Green, Yellow
+If we go with inheritance to combine them, we’ll end up writing classes like:
+        class RedSquare extends Square {}
+        class BlueSquare extends Square {}
+        class GreenSquare extends Square {}
+        class YellowSquare extends Square {}
+
+        class RedCircle extends Circle {}
+        class BlueCircle extends Circle {}
+        class GreenCircle extends Circle {}
+        class YellowCircle extends Circle {}
+        // and so on...
+
+That’s 4 (shapes) × 4 (colors) = 16 classes, just for this small case!
+If tomorrow you add one more color or shape — the class count explodes again.
+This is what’s known as the class explosion problem, and it makes your code rigid, unscalable, and hard to maintain.
+
+Now Lets understand bridge pattern using code in the ColorfulShapes directory 
+Requirements : 
+
+We should be able to add new shape and color without touching the existing piece of code. We cannot create a shape without any color. In simpler words there is no shape without any color.
+
+Lets analyze the delta here 
+
+Before bridge : 
+    We have a number of colors and b number of shapes 
+        Total Classes = a*b 
+        Lets say if we add a new color = total colors = a+1 so how many new classes ? = b number of new classes 
+    After bridge 
+        Total Classes = a+b 
+        If we add new color then only 1 class will be added to the code 
+
+🧠 Key Points
+    Bridge pattern promotes composition over inheritance
+    Decouples abstraction and implementation
+    Avoids class explosion
+    Both sides (shapes and colors) can evolve independently
+    Makes the system open for extension but closed for modification (OCP)
