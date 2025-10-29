@@ -31,7 +31,7 @@ The design patterns are prominently categorised into 3 types.
     1. Adapter 
     2. Bridge
     3. Decorator 
-    4. Fascade 
+    4. Facade 
     5. Flyweight 
     6. Proxy 
 

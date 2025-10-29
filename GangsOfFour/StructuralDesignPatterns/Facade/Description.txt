@@ -1,0 +1,25 @@
+The Facade Pattern is a structural design pattern that provides a simple, unified interface to a complex subsystem.
+It hides the details of the subsystem’s classes and interactions, exposing only what is necessary for the client to use.
+In short:
+Facade = Simpler interface to a complex system. 
+
+⚙️ Key Points
+The Facade acts as a front door for a group of related classes.
+It reduces coupling between the client and subsystem.
+It promotes easier usage, cleaner APIs, and better maintainability.
+
+Example : Online Banking System 
+
+A banking application has a complex backend with many services:
+AccountService → handles balance, account lookup
+LoanService → handles loans and payments
+CreditService → checks credit scores
+NotificationService → sends alerts and messages
+A customer simply wants to apply for a loan.
+If the UI or API directly called all these subsystems, it would be messy, error-prone, and tightly coupled.
+
+In springboot project what generlly happens is that, the api call is handled by controller. 
+We develop spring project using MVC architechture. The controller is the first point of contact for any api request
+Here controller also acts as Facade.
+
+The above banking example is the core example of Facade design pattern. 
