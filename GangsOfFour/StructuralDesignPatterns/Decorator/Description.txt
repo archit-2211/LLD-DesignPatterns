@@ -1,0 +1,26 @@
+The Decorator Design Pattern is a structural design pattern that allows behavior to be added to individual objects, dynamically, without affecting the behavior of other objects from the same class.
+It’s often used when you want to extend the functionality of classes in a flexible and reusable way — without using inheritance.
+
+🧩 Key Idea
+Instead of modifying or subclassing existing code, you wrap an object with another object that adds (decorates) extra functionality. 
+
+Simple explanation is that if you want to add features at run time; then we have to use decorator design pattern. 
+Example will make it more and more clear 
+
+
+
+Example 1 : Web Development - Features to request handler. 
+
+We are building a system where we get a request and at the runtime the client chooses how the request should be processed at run-time. 
+In this system we have 
+        1. BasicRequestHandler 
+        2. LoggingRequestHandler
+        3. AuthRequestHandler 
+
+Out of these 3 handlers, the BasicRequestHandler; handles every request that comes in our system.
+While the LoggingRequestHandler and AuthRequestHandler are handled in the runtime. 
+
+So decorator pattern is most suitable here. Refer to RequestHandler directory to understand in depth here. 
+Now in future lets say we want to add new requestHandler, we just need to add one new class and we do not need to modify the existing codebase. 
+
+This way; it follows open close principle of SOLID design principles. 

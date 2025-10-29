@@ -30,11 +30,10 @@ The design patterns are prominently categorised into 3 types.
 
     1. Adapter 
     2. Bridge
-    3. Composite 
-    4. Decorator 
-    5. Fascade 
-    6. Flyweight 
-    7. Proxy 
+    3. Decorator 
+    4. Fascade 
+    5. Flyweight 
+    6. Proxy 
 
 4. Behavioral Design Pattern : 
 
