@@ -1,0 +1,21 @@
+1. Flyweight Design Pattern 
+
+Purpose:
+    The Flyweight pattern is a structural design pattern used to reduce memory usage by sharing as much data as possible with similar objects. It's ideal when you have a large number of similar objects that differ only slightly.
+
+Key Idea:
+    Separate an object’s state into:
+    Intrinsic State (shared): Information that is independent of the object’s context. It can be shared among multiple objects.
+    Extrinsic State (context-specific): Information that depends on the object’s context. It cannot be shared.
+
+
+
+Lets take an example to better understand this pattern. Lets understand this in the context of PUBG.
+
+In PUBG, there are thousands of bullets, guns, and player characters appearing during gameplay. Many objects are similar in intrinsic properties, but differ in their position, owner, or state.
+Problem:
+If we create a separate object for every bullet or gun, memory usage skyrockets, especially in large matches.
+
+Intrinsic Properties : These are shared properties 
+Extrinsic Properties : These changes by the object. 
+
