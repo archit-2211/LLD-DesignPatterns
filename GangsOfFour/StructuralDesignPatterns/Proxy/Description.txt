@@ -1,0 +1,17 @@
+Proxy Pattern provides a surrogate or placeholder object that controls access to another object.\
+
+Instead of calling a real object directly, you call a proxy which may:
+    Control access (authorization)
+    Reduce cost (lazy loading / caching)
+    Add extra behavior (logging, rate limiting, etc.)
+
+    The proxy implements the same interface as the real object.
+
+Real-World Analogy
+
+        Think of a front desk receptionist in a company.
+        You don’t directly talk to the CEO.
+        The receptionist (proxy) checks:
+        Who you are (access control)
+        Whether CEO is available (resource management)
+        If valid → lets you through. 

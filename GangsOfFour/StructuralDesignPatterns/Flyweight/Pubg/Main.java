@@ -15,7 +15,7 @@ public class Main {
         p2.setGunOne(M416);
         p2.setGunTwo(AK47);
 
-        /*Same shared objects can be used here but we can create or get this objects using different creational design patterns based on our usecases.  */
+        /*Same shared objects can be used here but we can create or get this objects using different creational design patterns based on our usecases. */
 
     }
     

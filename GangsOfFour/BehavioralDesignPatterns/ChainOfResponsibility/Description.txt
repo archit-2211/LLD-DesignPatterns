@@ -1,0 +1,16 @@
+Chain of Responsibility (CoR) is a behavioral design pattern where multiple handlers get a chance to process a request.
+The request is passed along a chain until one handler handles it (or the chain ends).
+
+
+Instead of one object deciding how to handle a request, the request flows through a chain of objects.
+Each object can either handle the request or pass it to the next one.
+
+Lets understand this deep using an example. 
+
+Lets say we have a loan application and there is different heirarchy of people approving the loan based on the loan amount. 
+
+All the loans with amount <= 1000 can be approved by team lead 
+All the loans <=100000 can be approved by Manager 
+Any loan can be approved by Director 
+
+Refer to loan approver directory
